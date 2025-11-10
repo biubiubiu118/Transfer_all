@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>MetaMask Portfolio</title>
+    <link rel="stylesheet" href="./src/style.css"/>
+</head>
+<body>
+<div class="app">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <h1>My<br>Wallet Test</h1>
+        </div>
+        <nav class="nav-menu">
+            <a href="#" class="nav-item" id="intro" onclick="showTaskIntro()">
+                <span class="icon">📊</span>
+                Task Instruction
+            </a>
+            <a href="#" class="nav-item" id="list" onclick="showTaskDetail()">
+                <span class="icon">🔄</span>
+                Task List
+            </a>
+            <a href="#" class="nav-item" id="questionnaire" onclick="showQuestionnaire()">
+                <span class="icon">🔍</span>
+                Questionnaire
+            </a>
+        </nav>
+        <div class="terms">
+            <a href="#" id="task_time">Test Time Spent：</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <h1 id="totalpage_title">Task Instruction</h1>
+        </header>
+
+        <!-- Content -->
+        <main class="content">
+            <!-- task intro -->
+            <div class="portfolio-section hidden" id="task_intro">
+
+                <div class="portfolio-title">
+                    <h2> Dear test participant, welcome! We are conducting a test on the historical transaction record
+                        function
+                        of wallet application.<br><br>
+                        This test consists of <strong>10 transfer tasks</strong> and <strong>a post-test
+                            questionnaire</strong>, and it will take approximately 25 minutes to complete.<br><br>
+                        In this test, you have previously conducted transactions with multiple addresses. You are now
+                        required to repeat some of them on the wallet page as part of the functionality test.
+                        Please use the wallet interface on the right to complete the transfers. <strong>The specific
+                            transfer tasks can be viewed at any time by clicking "Task List" in the left
+                            sidebar.</strong><br><br>
+                        The wallet interface on the right provides two functions: <strong>Send</strong><img
+                                src="send-logo.png" alt="Send Icon"
+                                style="width:32px; height:32px; margin-left:0px; vertical-align:middle;border-radius: 50%;">and
+                        <strong>Transaction
+                            History</strong><img src="history-logo.png" alt="Send Icon"
+                                                 style="width:32px; height:32px; margin-left:0px; vertical-align:middle;border-radius: 50%;">.
+                        Their usage as following video:<br>
+                        <video width="470" height="260" controls style="margin-top:16px; border-radius:8px;">
+                            <source src="intro_vedio.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <br>
+                        By clicking the <strong>Transaction History</strong> button, you can view the historical
+                        transactions related to the tasks. You may click on any record to see detailed information. In
+                        the detail window, <strong>clicking on an address</strong> allows you to easily
+                        <strong>copy</strong> it.<br><br>
+                        By clicking the <strong>Send</strong> button, you can input the recipient address, token type,
+                        and amount required by the task, and then complete the task by clicking the
+                        <strong>Confirm</strong> button on the transaction request page that appears.<br><br>
+                        (Note: All account addresses and transaction records used in this test are fictional and only
+                        for functionality testing purposes. Other wallet features are still under development.)
+                    </h2>
+                </div>
+            </div>
+
+
+            <div class="portfolio-section hidden" id="task_list">
+                <div class="portfolio-title"><h2> There are 10 tasks in this test. Please complete them in order on the
+                    wallet page on the right.</h2></div>
+
+                <div class="task_show" id="task_show_inlist"><h2><strong>Task 1：</strong><br><br> You have previously
+                    transacted with account <strong id="text_address_inlist"
+                                                    onmouseover="startHover()"
+                                                    onmouseout="endHover()"
+                                                    title="0xa92afFA8e08c87dB8B46123c893737D4492152da">0xa92af...2152da</strong>
+                    (hover over the address can view its full 42-character address), <br><br>Please send<strong>
+                        0.5 USDC</strong> to this address again.<br><br>
+                    (Please <strong>strictly follow</strong> the task when completing transfer.)<br><br></h2></div>
+
+                <!-- Action Buttons -->
+                <div class="task-grid">
+                    <div class="task-btn" id="task1" onclick="showTask(1)">Task 1</div>
+                    <div class="arrow">→</div>
+                    <div class="task-btn" id="task2" onclick="showTask(2)">Task 2</div>
+                    <div class="arrow">→</div>
+                    <div class="task-btn" id="task3" onclick="showTask(3)">Task 3</div>
+
+                    <!-- Row 2 (only last arrow) -->
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div class="arrow down">↓</div> <!-- only under 任务三 -->
+
+                    <div class="task-btn" id="task6" onclick="showTask(5)">Task 6</div>
+                    <div class="arrow">←</div>
+                    <div class="task-btn" id="task5" onclick="showTask(6)">Task 5</div>
+                    <div class="arrow">←</div>
+                    <div class="task-btn" id="task4" onclick="showTask(4)">Task 4</div>
+
+                    <div class="arrow down">↓</div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+
+                    <div class="task-btn" id="task7" onclick="showTask(7)">Task 7</div>
+                    <div class="arrow">→</div>
+                    <div class="task-btn" id="task8" onclick="showTask(8)">Task 8</div>
+                    <div class="arrow">→</div>
+                    <div class="task-btn" id="task9" onclick="showTask(9)">Task 9</div>
+
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div class="arrow down">↓</div>
+
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div class="task-btn" id="task10" onclick="showTask(9)">Task 10</div>
+                </div>
+            </div>
+
+            <!-- task question -->
+            <div class="portfolio-section hidden" id="task_question">
+                <div class="portfolio-title">
+                    <h2>Questionnaire <br><strong>(Tips: After submit the questionnaire, a question4.txt will be
+                        downloaded to
+                        your local, please copy the file's full content and send it in the message box to us, and you
+                        can then close this page. After checking the file you send, we will approve your submit!
+                        Thanks.)</strong><br><br></h2>
+                </div>
+
+                <div class="questionnaire">
+                    <div class="question" id="question1">
+                        <label>1. Please input your Prolific ID?</label>
+                        <textarea id="q1" rows="2" placeholder="Please enter your Prolific ID..."
+                                  style="width: 100%; resize: vertical;"></textarea>
+                    </div>
+
+                    <label>2. How confident are you about sending all transaction to the correct address? (1 - Not
+                        confident at all, 5 - Very confident)</label>
+                    <div class="radio-group">
+                        <p class="radio-option"><input type="radio" name="q2" value="1"> 1</p>
+                        <p class="radio-option"><input type="radio" name="q2" value="2"> 2</p>
+                        <p class="radio-option"><input type="radio" name="q2" value="3"> 3</p>
+                        <p class="radio-option"><input type="radio" name="q2" value="4"> 4</p>
+                        <p class="radio-option"><input type="radio" name="q2" value="5"> 5</p>
+                    </div>
+
+                    <div class="question" id="question3">
+                        <label>3. Which tasks did you find difficult?</label>
+                        <textarea id="q3" rows="4" placeholder="Please enter your response..."
+                                  style="width: 100%; resize: vertical;"></textarea>
+                    </div>
+
+                    <label>4. Which information or elements helped you decide which address to choose?</label><br>
+                    <textarea id="q4" rows="4" placeholder="Please enter your response..."
+                              style="width: 100%; resize: vertical;"></textarea>
+
+                    <!-- 第5题 -->
+                    <div class="question" id="question5">
+                        <label>5. Did you notice any suspicious transactions in the transaction history during the
+                            test?</label>
+                        <p><input type="radio" name="q5" value="yes"> Yes</p>
+                        <p><input type="radio" name="q5" value="no"> No</p>
+                    </div>
+
+                    <!-- 第6题（默认隐藏） -->
+                    <div class="question hidden" id="question6">
+                        <label>6. Suspicious aspects in suspicious transactions:</label>
+                        <div class="radio-group">
+                            <p class="radio-option"><input type="checkbox" name="q6[]" value="1"> Incorrect address</p>
+                            <p class="radio-option"><input type="checkbox" name="q6[]" value="2"> Incorrect token type
+                            </p>
+                            <p class="radio-option"><input type="checkbox" name="q6[]" value="3"> Incorrect transfer
+                                direction</p>
+                            <p class="radio-option"><input type="checkbox" name="q6[]" value="4"> Incorrect transfer
+                                amount</p>
+                            <p class="radio-option"><input type="checkbox" name="q6[]" value="5"> Incorrect transaction
+                                time</p>
+                            <p class="radio-option"><input type="checkbox" name="q6[]" value="6"> Don't remember</p>
+                            <p class="radio-option"><input type="checkbox" name="q6[]" value="7"> Other issues</p>
+                        </div>
+                    </div>
+
+                    <label>7-1. Did you notice the Grayed-out Records in the transaction history?</label>
+                    <div class="radio-group">
+                        <label class="radio-option"><input type="radio" name="q7_1" value="yes"> Yes</label>
+                        <label class="radio-option"><input type="radio" name="q7_1" value="no"> No</label>
+                    </div>
+
+
+                    <!-- 第7-2题（默认隐藏） -->
+                    <div class="question hidden" id="question7_2">
+                        <label>7-2. How you understand why the record was grayed out?</label><br>
+                        <textarea id="q7_2" rows="4" placeholder="Please enter your response..."
+                                  style="width: 100%; resize: vertical;"></textarea>
+                    </div>
+
+
+                    <label>8-1. Did you encounter the Risk Warning Popup during copying address?</label>
+                    <div class="radio-group">
+                        <label class="radio-option"><input type="radio" name="q8_1" value="yes"> Yes</label>
+                        <label class="radio-option"><input type="radio" name="q8_1" value="no"> No</label>
+                    </div>
+
+                    <!-- 第8-2题（默认隐藏） -->
+                    <div class="question hidden" id="question8_2">
+                        <label> 8-2. Do you understand the content of the Risk Warning Popup? What actions did you take
+                            after
+                            seeing the Warning Popup?<br>
+                            (e.g., compare full 42-character address? Chose a different record to copy? Ignored it and
+                            continue sending?)</label><br>
+                        <textarea id="q8_2" rows="4" placeholder="Please enter your response..."
+                                  style="width: 100%; resize: vertical;"></textarea>
+                    </div>
+
+
+                    <label>9-1. Did you encounter the Risk Warning Popup during confirming transactions?</label>
+                    <div class="radio-group">
+                        <label class="radio-option"><input type="radio" name="q9_1" value="yes"> Yes</label>
+                        <label class="radio-option"><input type="radio" name="q9_1" value="no"> No</label>
+                    </div>
+
+                    <!-- 第9-2题（默认隐藏） -->
+                    <div class="question hidden" id="question9_2">
+                        <label>9-2. Do you understand the content of the Risk Warning Popup? What actions did you take
+                            after
+                            seeing the Warning Popup?<br>
+                            (e.g., compare full 42-character address? Chose a different record to copy? Ignored it and
+                            confirm the transaction?)</label><br>
+                        <textarea id="q9_2" rows="4" placeholder="Please enter your response..."
+                                  style="width: 100%; resize: vertical;"></textarea>
+                    </div>
+
+
+                    <label>10. How helpful was the Warning measures in helping you choose the correct
+                        address?(1 - Not helpful at all, 5 - Very helpful)</label>
+                    <div class="radio-group">
+                        <label class="radio-option"><input type="radio" name="q10" value="1"> 1</label>
+                        <label class="radio-option"><input type="radio" name="q10" value="2"> 2</label>
+                        <label class="radio-option"><input type="radio" name="q10" value="3"> 3</label>
+                        <label class="radio-option"><input type="radio" name="q10" value="4"> 4</label>
+                        <label class="radio-option"><input type="radio" name="q10" value="5"> 5</label>
+                    </div>
+
+                    <!-- 第11题 -->
+                    <div class="question" id="question11">
+                        <label>11. Did you compare the full 42-character address during this test?？</label>
+                        <p><input type="radio" name="q11" value="0"> 0 times</p>
+                        <p><input type="radio" name="q11" value="1-3"> 1–3 times</p>
+                        <p><input type="radio" name="q11" value="4-6"> 4–6 times</p>
+                        <p><input type="radio" name="q11" value="7-9"> 7–10 times</p>
+                        <p><input type="radio" name="q11" value=">9"> More than 10 times</p>
+                    </div>
+
+                    <!-- 第12题（默认隐藏） -->
+                    <div class="question hidden" id="question12">
+                        <label>12. In what situations did you compare the full 42-character address?<br>
+                            (Was it from the beginning, or only after noticing the grayed-out transaction?)<br>
+                            In what situations did you choose not to compare the full 42-character address?<br>
+                            (For instance, in the next task?)</label>
+                        <textarea id="q12" rows="4" placeholder="Please enter your response..."
+                                  style="width: 100%; resize: vertical;"></textarea>
+                    </div>
+
+                    <!-- 第13题 -->
+                    <div class="question" id="question13">
+                        <label>13. Are you familiar with Web3?</label>
+                        <p><input type="radio" name="q13" value="yes"> Yes</p>
+                        <p><input type="radio" name="q13" value="no"> No</p>
+                    </div>
+
+                    <!-- 第14题 -->
+                    <div class="question" id="question14">
+                        <label>14. Your understanding of Web3:</label>
+                        <textarea id="q14" rows="4" placeholder="Please enter your response..."
+                                  style="width: 100%; resize: vertical;"></textarea>
+                    </div>
+
+                    <label>15. How long have you been using Web3 wallet applications?</label>
+                    <div class="radio-group">
+                        <p class="radio-option"><input type="radio" name="q15" value="1"> Never used</p>
+                        <p class="radio-option"><input type="radio" name="q15" value="2"> Used, but less than 1 year</p>
+                        <p class="radio-option"><input type="radio" name="q15" value="3"> 1 to 3 years</p>
+                        <p class="radio-option"><input type="radio" name="q15" value="4"> More than 3 years</p>
+                    </div>
+
+                    <!-- 第16题（默认隐藏） -->
+                    <div class="question hidden" id="question16">
+                        <label>16. Web3 wallets you have used: </label>
+                        <textarea id="q16" rows="4" placeholder="Please enter your response..."
+                                  style="width: 100%; resize: vertical;"></textarea>
+                    </div>
+
+                    <label>17. Overall feedback: Do you have any suggestions or comments about the History and Send
+                        function?</label><br>
+                    <textarea id="q17" rows="4" placeholder="Please enter your response..."
+                              style="width: 100%; resize: vertical;"></textarea>
+                </div>
+
+                <div class="questionnaire-submit">
+                    <button onclick="submitQuestionnaire()">Confirm Submission</button>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+</div>
+
+<!-- extension -->
+<!-- 背景遮罩 -->
+<div class="modal-overlay" id="portfolioOverlay"></div>
+
+<!-- 弹窗内容 -->
+<div class="portfolio-modal" id="portfolioModal">
+    <div class="wallet-header">
+        <div class="portfolio-header">
+            <img src="user-avatar.png" class="user-avatar">
+            <div class="wallet-names">
+                <div class="account-name">Wallet 01</div>
+                <div class="account-id">Account 01 ▼</div>
+            </div>
+        </div>
+        <div class="header-icons">
+            <span class="icon2">&#128203;</span>
+            <span class="icon2">&#9881;</span>
+            <span class="icon2">&#127760;</span>
+        </div>
+    </div>
+
+
+    <div class="balance-total">
+        <div class="usd-amount">$******</div>
+        <div class="change-wrapper">
+            <span class="usd-change">+$ ******</span>
+            <span class="time-filter">1 D ▼</span>
+        </div>
+    </div>
+
+    <div class="action-button-row">
+        <div class="action-button" onclick="showSendModal()">
+            <div class="action-circle">
+                <span class="icon2">&#128228;</span>
+            </div>
+            <div class="action-label">Send</div>
+        </div>
+
+        <div class="action-button">
+            <div class="action-circle">
+                <span class="icon2">&#128229;</span>
+            </div>
+            <div class="action-label disabled">Receive</div>
+        </div>
+
+        <div class="action-button">
+            <div class="action-circle">
+                <span class="icon2">&#128260;</span>
+            </div>
+            <div class="action-label disabled">Swap</div>
+        </div>
+
+        <div class="action-button" onclick="showTxHistoryModal()">
+            <div class="action-circle">
+                <span class="icon2">&#128736;</span>
+            </div>
+            <div class="action-label">History</div>
+        </div>
+
+        <div class="action-button">
+            <div class="action-circle">
+                <span class="icon2">🔍</span>
+            </div>
+            <div class="action-label disabled">Toolkit</div>
+        </div>
+    </div>
+
+    <div class="tab-bar">
+        <span class="active">Crypto</span>
+        <span>NFT</span>
+        <span>DeFi</span>
+        <span>Approvals</span>
+    </div>
+
+    <div class="asset-total">
+        <span>Total assets</span>
+        <span>$ * * * * * *</span>
+    </div>
+
+    <div class="portfolio-scrollable" id="portfolioScrollable">
+        <div class="token-list">
+            <div class="token-item">
+                <img src="eth-logo1.png" class="token-icon">
+                <div class="token-info">
+                    <div class="token-name">ETH</div>
+                    <div class="token-rate">$2510.57 <span class="price-change red">-0.42%</span></div>
+                </div>
+                <div class="token-amount">50</div>
+                <div class="token-value">125528.50</div>
+            </div>
+
+            <div class="token-item">
+                <img src="bnb-logo1.png" class="token-icon">
+                <div class="token-info">
+                    <div class="token-name">BNB</div>
+                    <div class="token-rate">$646.7 <span class="price-change red">-1.52%</span></div>
+                </div>
+                <div class="token-amount">100</div>
+                <div class="token-value">$64670.00</div>
+            </div>
+
+            <div class="token-item">
+                <img src="usdc-logo1.png" class="token-icon">
+                <div class="token-info">
+                    <div class="token-name">USDC</div>
+                    <div class="token-rate">$0.9999 <span class="price-change green">0%</span></div>
+                </div>
+                <div class="token-amount">3000</div>
+                <div class="token-value">$2999.70</div>
+            </div>
+
+            <div class="token-item">
+                <img src="usdt-logo1.png" class="token-icon">
+                <div class="token-info">
+                    <div class="token-name">USDT</div>
+                    <div class="token-rate">$1 <span class="price-change green">-0.01%</span></div>
+                </div>
+                <div class="token-amount">0</div>
+                <div class="token-value">$0</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div id="txHistoryModal" class="tx-history-modal">
+    <div class="tx-history-header">
+        <span class="back-button" onclick="closeTxHistoryModal()">←</span>
+        <span class="tx-history-title">History</span>
+    </div>
+    <div class="tx-history-filters">
+        <span>All networks ▼</span>
+        <span>All types ▼</span>
+        <span class="filter-icon">🔍</span>
+    </div>
+    <div class="tx-history-scrollable" id="transactionList">
+        <!-- 可滚动的交易记录列表 -->
+
+
+        <!-- 06/22 -->
+        <!-- fake -->
+        <div class="tx-date">06/22/2025</div>
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('0', '0x4e3ba4816a894f2b7317c9ec8919e4ce7e56ce76', '0xf181763259db994485283ab795448b937ece52d3', '0.001','BNB','receive', 'sus-from','06/22/2025, 16:48:21')">
+            <img src="receive-logo.png" class="tx-token-icon">
+            <div class="tx-info-suspicious">
+                <div>Receive</div>
+                <div class="tx-address-false">From 0x4e3b...56ce76</div>
+                <span class="suspicious_logo"> &#9888 suspicious address</span>
+            </div>
+            <div class="tx-amount negative">+0.001 BNB</div>
+        </div>
+
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('1', '0x254f2c16551f5960f2a6cbeeae713b320a66a83f', '0xf181763259db994485283ab795448b937ece52d3', '3','BNB','receive', 'sus-no','06/22/2025, 08:36:49')">
+            <img src="receive-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Receive</div>
+                <div class="tx-address">From 0x254f...66a83f</div>
+            </div>
+            <div class="tx-amount positive">+3 BNB</div>
+        </div>
+
+        <!-- 06/21 -->
+        <div class="tx-date">06/21/2025</div>
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('2', '0xf181763259db994485283ab795448b937ece52d3', '0x21ecb234881e607307266fbb2cfac4d6cfe0fe7c', '14.5','ETH','send', 'sus-no','06/21/2025, 13:21:36')">
+            <img src="send2-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Send</div>
+                <div class="tx-address">To 0x21ec...e0fe7c</div>
+            </div>
+            <div class="tx-amount positive">-14.5 ETH</div>
+        </div>
+
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('3', '0xf181763259db994485283ab795448b937ece52d3', '0x21ecb234881e607307266fbb2cfac4d6cfe0fe7c', '5','ETH','send', 'sus-no','06/21/2025, 13:18:27')">
+            <img src="send2-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Send</div>
+                <div class="tx-address">To 0x21ec...e0fe7c</div>
+            </div>
+            <div class="tx-amount positive">-5 ETH</div>
+        </div>
+
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('4', '0xf181763259db994485283ab795448b937ece52d3', '0x21ecb234881e607307266fbb2cfac4d6cfe0fe7c', '0.000001','ETH','send', 'sus-no','06/21/2025, 13:10:15')">
+            <img src="send2-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Send</div>
+                <div class="tx-address">To 0x21ec...e0fe7c</div>
+            </div>
+            <div class="tx-amount positive">-0.000001 ETH</div>
+        </div>
+
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('5', '0xf181763259db994485283ab795448b937ece52d3', '0x4e3ba91594ef274a383dfc0c5a58b4de7e56ce76', '5','BNB','send', 'sus-no','06/21/2025, 10:09:42')">
+            <img src="send2-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Send</div>
+                <div class="tx-address">To 0x4e3b...56ce76</div>
+            </div>
+            <div class="tx-amount positive">-5 BNB</div>
+        </div>
+
+        <!-- 06/20 -->
+        <div class="tx-date">06/20/2025</div>
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('6', '0x038de5da1a8999282dc526d39cc9eddfe1864c67', '0xf181763259db994485283ab795448b937ece52d3', '0.005', 'ETH','receive', 'sus-no','06/20/2025, 20:14:35')">
+            <img src="receive-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Receive</div>
+                <div class="tx-address">From 0x038d...864c67</div>
+            </div>
+            <div class="tx-amount positive">+0.005 ETH</div>
+        </div>
+
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('7', '0xf181763259db994485283ab795448b937ece52d3', '0x038de5da1a8999282dc526d39cc9eddfe1864c67', '2.15', 'ETH','send', 'sus-no','06/20/2025, 20:12:22')">
+            <img src="send2-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Send</div>
+                <div class="tx-address">To 0x038d...864c67</div>
+            </div>
+            <div class="tx-amount positive">-2.15 ETH</div>
+        </div>
+
+        <!-- 06/18 -->
+        <div class="tx-date">06/18/2025</div>
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('8', '0x64bdefec5f169f8fe305c7f6a3a662fbd7f91d26', '0xf181763259db994485283ab795448b937ece52d3', '3','ETH','receive', 'sus-no','06/18/2025, 22:15:27')">
+            <img src="receive-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Receive</div>
+                <div class="tx-address">From 0x64bd...f91d26</div>
+            </div>
+            <div class="tx-amount positive">+3 ETH</div>
+        </div>
+
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('9', '0x64bdefec5f169f8fe305c7f6a3a662fbd7f91d26', '0xf181763259db994485283ab795448b937ece52d3', '0.00002','ETH','receive', 'sus-no','06/18/2025, 18:34:18')">
+            <img src="receive-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Receive</div>
+                <div class="tx-address">From 0x64bd...f91d26</div>
+            </div>
+            <div class="tx-amount positive">+0.00002 ETH</div>
+        </div>
+
+        <!-- 06/17 -->
+        <!-- fake -->
+        <div class="tx-date">06/17/2025</div>
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('10', '0xe52a775659b59a33f525b1c40e7c703796d40ab7', '0xf181763259db994485283ab795448b937ece52d3', '0.000021', 'USDC','receive', 'sus-from','06/17/2025, 16:24:51')">
+            <img src="receive-logo.png" class="tx-token-icon">
+            <div class="tx-info-suspicious">
+                <div>Receive</div>
+                <div class="tx-address-false">From 0xe52a...d40ab7</div>
+                <span class="suspicious_logo"> &#9888 suspicious address</span>
+            </div>
+            <div class="tx-amount negative">+0.000021 USDC</div>
+        </div>
+
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('11', '0xf181763259db994485283ab795448b937ece52d3', '0xe52a132e1d653e3afb17d9c75581efb1b3d40ab7', '5', 'USDC','send', 'sus-no','06/17/2025, 16:18:23')">
+            <img src="send2-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Send</div>
+                <div class="tx-address">To 0xe52a...d40ab7</div>
+            </div>
+            <div class="tx-amount positive">-5 USDC</div>
+        </div>
+
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('12', '0xf181763259db994485283ab795448b937ece52d3', '0xe52a132e1d653e3afb17d9c75581efb1b3d40ab7', '0.1', 'USDC','send', 'sus-no','06/17/2025, 15:27:23')">
+            <img src="send2-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Send</div>
+                <div class="tx-address">To 0xe52a...d40ab7</div>
+            </div>
+            <div class="tx-amount positive">-0.1 USDC</div>
+        </div>
+
+        <!-- 06/14 -->
+        <div class="tx-date">06/14/2025</div>
+        <!-- fake -->
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('13', '0x061d7018174525be5198a8374e21bcff4b07c49b', '0xf181763259db994485283ab795448b937ece52d3', '0.1', 'USDC','receive', 'sus-from','06/14/2025, 09:34:52')">
+            <img src="receive-logo.png" class="tx-token-icon">
+            <div class="tx-info-suspicious">
+                <div>Receive</div>
+                <div class="tx-address-false">From 0x061d...07c49b</div>
+                <span class="suspicious_logo"> &#9888 suspicious address</span>
+            </div>
+            <div class="tx-amount negative">+0.1 USDC</div>
+        </div>
+
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('14', '0x061d7cb31ccf9429c1174d4f74171f025b07c49b', '0xf181763259db994485283ab795448b937ece52d3', '0.1', 'USDC','receive', 'sus-no','06/14/2025, 09:21:33')">
+            <img src="receive-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Receive</div>
+                <div class="tx-address">From 0x061d...07c49b</div>
+            </div>
+            <div class="tx-amount positive">+0.1 USDC</div>
+        </div>
+
+        <!-- 06/13 -->
+        <div class="tx-date">06/13/2025</div>
+        <!-- fake -->
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('15', '0x5e8ced668b63452fa227be40439d07c831980e8d', '0xf181763259db994485283ab795448b937ece52d3', '0.01', 'USDC','receive', 'sus-from','06/13/2025, 14:22:59')">
+            <img src="receive-logo.png" class="tx-token-icon">
+            <div class="tx-info-suspicious">
+                <div>Receive</div>
+                <div class="tx-address-false">From 0x5e8c...980e8d</div>
+                <span class="suspicious_logo"> &#9888 suspicious address</span>
+            </div>
+            <div class="tx-amount negative">+0.01 USDC</div>
+        </div>
+
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('16', '0x681d51dd1bfe89efed93117937e5c7c27ad804dc', '0xf181763259db994485283ab795448b937ece52d3', '0.5','USDC','receive', 'sus-no','06/13/2025, 11:59:24')">
+            <img src="receive-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Receive</div>
+                <div class="tx-address">From 0x681d...d804dc</div>
+            </div>
+            <div class="tx-amount">+0.5 USDC</div>
+        </div>
+
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('17', '0xf181763259db994485283ab795448b937ece52d3', '0x681d51dd1bfe89efed93117937e5c7c27ad804dc', '5.2','USDC','send', 'sus-no','06/13/2025, 11:56:59')">
+            <img src="send2-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Send</div>
+                <div class="tx-address">To 0x681d...d804dc</div>
+            </div>
+            <div class="tx-amount">-5.2 USDC</div>
+        </div>
+
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('18', '0xf181763259db994485283ab795448b937ece52d3', '0x681d51dd1bfe89efed93117937e5c7c27ad804dc', '0.05','USDC','send', 'sus-no','06/13/2025, 10:27:43')">
+            <img src="send2-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Send</div>
+                <div class="tx-address">To 0x681d...d804dc</div>
+            </div>
+            <div class="tx-amount positive">-0.005 USDC</div>
+        </div>
+
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('19', '0xf181763259db994485283ab795448b937ece52d3', '0x5e8ce3a7f20a473a9af182ce15db0d9ed1980e8d', '10', 'ETH','send', 'sus-no','06/13/2025, 09:42:51')">
+            <img src="send2-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Send</div>
+                <div class="tx-address">To 0x5e8c...980e8d</div>
+            </div>
+            <div class="tx-amount positive">-10 ETH</div>
+        </div>
+
+        <!-- 06/12 -->
+        <div class="tx-date">06/12/2025</div>
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('20', '0x64bdefec5f169f8fe305c7f6a3a662fbd7f91d26', '0xf181763259db994485283ab795448b937ece52d3', '0.00001','ETH','receive', 'sus-no','06/12/2025, 18:48:32')">
+            <img src="receive-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Receive</div>
+                <div class="tx-address">From 0x64bd...f91d26</div>
+            </div>
+            <div class="tx-amount positive">+0.00001 ETH</div>
+        </div>
+
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('21', '0xf181763259db994485283ab795448b937ece52d3', '0x64bdefec5f169f8fe305c7f6a3a662fbd7f91d26', '0.0002','ETH','send', 'sus-no','06/12/2025, 18:33:49')">
+            <img src="send2-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Send</div>
+                <div class="tx-address">To 0x64bd...f91d26</div>
+            </div>
+            <div class="tx-amount positive">-0.0002 ETH</div>
+        </div>
+
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('22', '0xa92afFA8e08c87dB8B46123c893737D4492152da', '0xf181763259db994485283ab795448b937ece52d3', '0.002', 'ETH','receive', 'sus-no','06/12/2025, 18:29:26')">
+            <img src="receive-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Receive</div>
+                <div class="tx-address">From 0xa92af...2152da</div>
+            </div>
+            <div class="tx-amount positive">+0.002 ETH</div>
+        </div>
+
+        <!-- 06/11 -->
+        <div class="tx-date">06/11/2025</div>
+        <!-- fake -->
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('23', '0x3de9558d23715d5d4381738e0106060d5e9a384e', '0xf181763259db994485283ab795448b937ece52d3', '0.00001', 'ETH','receive', 'sus-from','06/11/2025, 20:19:08')">
+            <img src="receive-logo.png" class="tx-token-icon">
+            <div class="tx-info-suspicious">
+                <div>Receive</div>
+                <div class="tx-address-false">From 0x3de9...9a384e</div>
+                <span class="suspicious_logo"> &#9888 suspicious address</span>
+            </div>
+            <div class="tx-amount negative">+0.00001 ETH</div>
+        </div>
+
+        <!-- fake -->
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('24', '0x3de9558d23715d5d4381738e0106060d5e9a384e', '0xf181763259db994485283ab795448b937ece52d3', '0.0000021', 'ETH','receive', 'sus-from','06/11/2025, 20:13:58')">
+            <img src="receive-logo.png" class="tx-token-icon">
+            <div class="tx-info-suspicious">
+                <div>Receive</div>
+                <div class="tx-address-false">From 0x3de9...9a384e</div>
+                <span class="suspicious_logo"> &#9888 suspicious address</span>
+            </div>
+            <div class="tx-amount negative">+0.0000021 ETH</div>
+        </div>
+
+        <!-- fake -->
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('25', '0x3de9558d23715d5d4381738e0106060d5e9a384e', '0xf181763259db994485283ab795448b937ece52d3', '0.000014', 'ETH','receive', 'sus-from','06/11/2025, 20:09:49')">
+            <img src="receive-logo.png" class="tx-token-icon">
+            <div class="tx-info-suspicious">
+                <div>Receive</div>
+                <div class="tx-address-false">From 0x3de9...9a384e</div>
+                <span class="suspicious_logo"> &#9888 suspicious address</span>
+            </div>
+            <div class="tx-amount negative">+0.000014 ETH</div>
+        </div>
+
+        <!-- fake -->
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('26', '0x3de9558d23715d5d4381738e0106060d5e9a384e', '0xf181763259db994485283ab795448b937ece52d3', '0.00001', 'ETH','receive', 'sus-from','06/11/2025, 20:07:13')">
+            <img src="receive-logo.png" class="tx-token-icon">
+            <div class="tx-info-suspicious">
+                <div>Receive</div>
+                <div class="tx-address-false">From 0x3de9...9a384e</div>
+                <span class="suspicious_logo"> &#9888 suspicious address</span>
+            </div>
+            <div class="tx-amount negative">+0.00001 ETH</div>
+        </div>
+
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('27', '0xf181763259db994485283ab795448b937ece52d3', '0x3de969410e056e3f3b1ddd26e800da7c019a384e', '0.01', 'ETH','send', 'sus-no','06/11/2025, 20:03:48')">
+            <img src="send2-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Send</div>
+                <div class="tx-address">To 0x3de9...9a384e</div>
+            </div>
+            <div class="tx-amount positive">-0.01 ETH</div>
+        </div>
+
+        <!-- 06/08 -->
+        <div class="tx-date">06/08/2025</div>
+        <!-- fake -->
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('28', '0xef8b3f103601d0b40f85423067a8b462f40ec372', '0xf181763259db994485283ab795448b937ece52d3', '0.1', 'USDC','receive', 'sus-from','06/08/2025, 10:55:31')">
+            <img src="receive-logo.png" class="tx-token-icon">
+            <div class="tx-info-suspicious">
+                <div>Receive</div>
+                <div class="tx-address-false">From 0xef8b...0ec372</div>
+                <span class="suspicious_logo"> &#9888 suspicious address</span>
+            </div>
+            <div class="tx-amount negative">+0.1 USDC</div>
+        </div>
+
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('29', '0xf181763259db994485283ab795448b937ece52d3', '0xef8b47d5b94638f48848ff4f8b2987b1340ec372', '0.1', 'USDC','send', 'sus-no','06/08/2025, 10:43:18')">
+            <img src="send2-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Send</div>
+                <div class="tx-address">To 0xef8b...0ec372</div>
+            </div>
+            <div class="tx-amount positive">-0.1 USDC</div>
+        </div>
+
+        <!-- 06/07 -->
+        <div class="tx-date">06/07/2025</div>
+        <!-- fake -->
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('30', '0xf181763259db994485283ab795448b937ece52d3', '0x66e0bcf0a1f09fd25e77aed2ea3d2bd5437ec7ca', '0','USDC','send', 'sus-to','06/07/2025, 14:28:52')">
+            <img src="send2-logo.png" class="tx-token-icon">
+            <div class="tx-info-suspicious">
+                <div>Send</div>
+                <div class="tx-address-false">To 0x66e0...7ec7ca</div>
+                <span class="suspicious_logo"> &#9888 suspicious address</span>
+            </div>
+            <div class="tx-amount negative">-0 BNB</div>
+        </div>
+
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('31', '0xf181763259db994485283ab795448b937ece52d3', '0x66e0b66d9e7f44e99bec3090619e87f7f37ec7ca', '13.5','USDC','send', 'sus-no','06/07/2025, 14:11:46')">
+            <img src="send2-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Send</div>
+                <div class="tx-address">To 0x66e0...7ec7ca</div>
+            </div>
+            <div class="tx-amount positive">-238 USDC</div>
+        </div>
+
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('32', '0xf181763259db994485283ab795448b937ece52d3', '0x66e0b66d9e7f44e99bec3090619e87f7f37ec7ca', '0.0001','USDC','send', 'sus-no','06/07/2025, 14:06:11')">
+            <img src="send2-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Send</div>
+                <div class="tx-address">To 0x66e0...7ec7ca</div>
+            </div>
+            <div class="tx-amount positive">-0.0001 USDC</div>
+        </div>
+
+        <!-- 06/03 -->
+        <div class="tx-date">06/03/2025</div>
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('33', '0xf181763259db994485283ab795448b937ece52d3', '0x3a496818dc6e229695a851d7284594dd1ba0ff1a', '0.6','ETH','send', 'sus-no','06/03/2025, 09:47:22')">
+            <img src="send2-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Send</div>
+                <div class="tx-address">To 0x3a49...a0ff1a</div>
+            </div>
+            <div class="tx-amount positive">-0.6 ETH</div>
+        </div>
+
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('34', '0xf181763259db994485283ab795448b937ece52d3', '0x3a496818dc6e229695a851d7284594dd1ba0ff1a', '0.0002','ETH','send', 'sus-no','06/03/2025, 09:11:37')">
+            <img src="send2-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Send</div>
+                <div class="tx-address">To 0x3a49...a0ff1a</div>
+            </div>
+            <div class="tx-amount positive">-0.0002 ETH</div>
+        </div>
+
+        <!-- 06/02 -->
+        <div class="tx-date">06/02/2025</div>
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('35', '0xf181763259db994485283ab795448b937ece52d3', '0xa92afFA8e08c87dB8B46123c893737D4492152da', '10', 'USDC','send', 'sus-no','06/02/2025, 19:43:29')">
+            <img src="send2-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Send</div>
+                <div class="tx-address">To 0xa92af...2152da</div>
+            </div>
+            <div class="tx-amount positive">-10 USDC</div>
+        </div>
+
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('36', '0xf181763259db994485283ab795448b937ece52d3', '0xef8b47d5b94638f48848ff4f8b2987b1340ec372', '0.1', 'USDC','send', 'sus-no','06/02/2025, 16:31:51')">
+            <img src="send2-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Send</div>
+                <div class="tx-address">To 0xef8b...0ec372</div>
+            </div>
+            <div class="tx-amount positive">-456.7 USDC</div>
+        </div>
+
+        <div class="tx-record"
+             onclick="openTransactionDetailModal('37', '0x93c54c6e287be3c2fc7b4d461661b7d734ca6a28', '0xf181763259db994485283ab795448b937ece52d3', '0.1', 'USDC','receive', 'sus-no','06/02/2025, 11:16:42')">
+            <img src="receive-logo.png" class="tx-token-icon">
+            <div class="tx-info">
+                <div>Receive</div>
+                <div class="tx-address">From 0x93c5...ca6a28</div>
+            </div>
+            <div class="tx-amount positive">+30.5 USDC</div>
+        </div>
+
+
+    </div>
+</div>
+
+<div id="transactionDetailModal" class="transaction-modal">
+    <div class="transaction-detail-modal">
+        <!-- 状态 -->
+        <div class="tx-status-box">
+            <div class="tx-center-wrapper">
+                <div class="tx-status-left">
+                    <span class="circle-check">✔</span>
+                    <span class="tx-status-text">Completed</span>
+                </div>
+            </div>
+            <span class="close-btn" onclick="closeTransactionDetailModal()">×</span>
+        </div>
+
+        <!-- 金额展示 -->
+        <div class="tx-amount-main">
+            <img src="bnb-logo1.png" class="tx-token-icon2" id="trans_detail_logo"/>
+            <span class="tx-amount-value" id="trans_detail_value">- 0.000001 BNB</span>
+        </div>
+
+        <!-- 地址 From / To -->
+        <div class="tx-detail-address">
+            <div class="tx-label3">From</div>
+            <div class="tx-value copy-wrapper">
+                <span id="txSender" class="copy-address" history_id="0"
+                      data-full-address="0xF181763259db994485283AB795448B937Ece52D3"
+                      similar-address="0xF181763259db994485283AB795448B937Ece52D3" suspicious="0" title="Click to Copy"
+                      onclick="copyFullAddress(this)">0x...</span>
+            </div>
+            <div class="tx-subtext hidden" id="subtext_from">Wallet 01 - Account 01</div>
+
+            <div class="tx-label3">To</div>
+            <div class="tx-value copy-wrapper">
+                <span id="txReceiver" class="copy-address" history_id="0"
+                      data-full-address="0xF181763259db994485283AB795448B937Ece52D3"
+                      similar-address="0xF181763259db994485283AB795448B937Ece52D3" suspicious="0"
+                      onclick="copyFullAddress(this)"
+                      title="Click to Copy">0x...</span>
+            </div>
+            <div class="tx-subtext hidden" id="subtext_to">Wallet 01 - Account 01</div>
+        </div>
+
+        <!-- 交易详情 -->
+        <div class="tx-detail-rows">
+            <div class="tx-detail-row"><span>Time</span><span id="trans_time">07/03/2025, 00:48:21</span></div>
+            <div class="tx-detail-row"><span>Type</span><span id="receive_or_send">Send</span></div>
+            <div class="tx-detail-row"><span>Network fee (refund)</span><span id="network_fee">0 BNB (--)</span></div>
+            <div class="tx-detail-row"><span>Network</span><span id="network_type">BNB Chain</span></div>
+            <div class="tx-detail-row"><span>Txhash</span><span>0xcf9d...5c35</span></div>
+            <div class="tx-detail-row"><span>Block confirmation</span><span>911789</span></div>
+        </div>
+
+    </div>
+</div>
+
+<div id="copyToast" class="copy-toast">Copied successfully!</div>
+<div id="copyClean" class="copy-toast">Clipboard has been cleared</div>
+<div id="sendOk" class="copy-toast">Transaction Send!</div>
+
+<!-- Transfer Input -->
+<!-- Modal Overlay -->
+<div id="sendOverlay" class="input-overlay"></div>
+
+<!-- Select crypto Modal -->
+<div id="SelectCryptoModal" class="send-modal">
+    <div class="tx-history-header">
+        <span class="back-button" onclick="closeSelectCryptoModal()">←</span>
+        <span class="tx-history-title">Select crypto</span>
+    </div>
+    <!-- Search bar -->
+    <div class="crypto-search-bar">
+        <input type="text" placeholder="🔍 Search crypto" disabled/>
+    </div>
+
+    <!-- Token List -->
+    <div class="token-list2">
+        <div class="token-item2" onclick="select_eth()">
+            <img src="eth-logo1.png" class="token-icon3"/>
+            <div class="token-info2">
+                <div class="token-name-row">
+                    <span class="token-name">ETH</span>
+                    <span class="token-balance">50</span>
+                </div>
+                <div class="token-sub-row">
+                    <span class="token-network">Ethereum</span>
+                    <span class="token-fiat">$125528.50</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="token-item2" onclick="select_bnb()">
+            <img src="bnb-logo1.png" class="token-icon3"/>
+            <div class="token-info2">
+                <div class="token-name-row">
+                    <span class="token-name">BNB</span>
+                    <span class="token-balance">100</span>
+                </div>
+                <div class="token-sub-row">
+                    <span class="token-network">BNB Chain</span>
+                    <span class="token-fiat">$64670.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="token-item2" onclick="select_usdc()">
+            <img src="usdc-logo1.png" class="token-icon3"/>
+            <div class="token-info2">
+                <div class="token-name-row">
+                    <div class="token-info4">
+                        <span class="token-name">USDC</span>
+                        <span class="network-tag">Ethereum</span>
+                    </div>
+                    <span class="token-balance">3000</span>
+                </div>
+                <div class="token-sub-row">
+                    <span class="token-network">USD coin</span>
+                    <span class="token-fiat">$2999.70</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Send to Modal -->
+<div id="SendtoModal" class="send-modal">
+    <div class="tx-history-header">
+        <span class="back-button" onclick="closeSendtoModal()">←</span>
+        <span class="tx-history-title">Send to</span>
+    </div>
+    <!-- Search bar -->
+    <div class="address_input-bar">
+        <input type="text" placeholder=" Enter wallet address" id="address_input"/>
+        <!--<textarea placeholder="Enter wallet address" id="address_input" rows="1"></textarea>-->
+    </div>
+
+    <!-- 地址簿下拉 -->
+    <div class="address-book-toggle">
+        <span>Address book</span>
+    </div>
+
+    <!-- 底部按钮 -->
+    <button class="next-btn" onclick="triggerSendAmount()">Send</button>
+</div>
+
+<!-- Send Amount Modal -->
+<div id="SendAmountModal" class="send-modal">
+    <div class="tx-history-header">
+        <span class="back-button" onclick="closeSendAmountModal()">←</span>
+        <span class="tx-history-title">Send</span>
+    </div>
+
+    <!-- 输入金额 -->
+    <div class="amount-input-container">
+        <input type="number" class="amount-input" id="amountInput" placeholder="0.00"/>
+        <div class="amount-unit" id="sendamount_token">BNB</div>
+    </div>
+
+    <!-- 余额卡片 -->
+    <div class="balance-card">
+        <img src="bnb-logo1.png" class="balance-icon" id="send_amount_logo"/>
+        <div class="balance-text">
+            <div class="balance-label">Balance</div>
+            <div class="balance-amount2" id="send_amount_all">****** BNB</div>
+        </div>
+    </div>
+    <!-- 底部按钮 -->
+    <button class="open-confirm-btn" onclick="triggerConfirm()">Confirm</button>
+
+</div>
+
+<!-- Confirm Page -->
+<div id="sendConfirmOverlay" class="send-overlay"></div>
+
+<div id="sendConfirmModal" class="send-confirm-modal">
+    <!-- 主体内容 -->
+    <div class="send-confirm-body">
+        <!-- Token Section：绿色箭头 + Send + 金额 -->
+        <div class="token-section">
+            <img src="bnb-logo1.png" class="inline-icon2" id="confirmpage-title"/>
+            <div class="send_confirm">Send</div>
+            <div class="amount" id="confirm_amount">0.000001</div>
+            <div class="token-symbol" id="confirm_token">BNB</div>
+        </div>
+    </div>
+
+    <!-- 网络费 Section -->
+    <div class="fee-section">
+        <div class="fee-label" id="confirm_network">Est BNB Chain network fee</div>
+        <div class="fee-row">
+            <img src="bnb-logo1.png" class="inline-icon" id="confirm_feetoken"/>
+            <span>Average</span> |
+            <span id="confirm_avefee"><0.00001 BNB ($******)</span>
+        </div>
+        <div class="fee-label" id="confirm_maxfee">Maximum <0.00001 BNB ($******)</div>
+    </div>
+
+    <!-- 地址信息 -->
+    <div class="tx-column top">
+        <div class="from">From</div>
+        <div class="pill">0xf181763259db994485283ab795448b937ece52d3</div>
+        <div class="pill-wallet">Wallet 01 - Account 01</div>
+    </div>
+
+    <div class="tx-column bottom">
+        <div class="to">To</div>
+        <div class="pill" full-to-add="0x..." id="confirmReceiver">0x...</div>
+    </div>
+
+    <div class="tx-column bottom">
+        <div class="to">HEX data(optional)</div>
+    </div>
+
+    <!-- 底部按钮 -->
+    <div class="send-confirm-footer">
+        <button class="cancel-btn4" onclick="ConfirmNo()">Cancels</button>
+        <button class="confirm-btn4" onclick="SendConfirm()">Confirms</button>
+    </div>
+</div>
+
+
+<div id="copyWarningModal" class="copy-warning-modal">
+    <div class="warning-box">
+        <div class="warning-text">
+            <span class="warning-icon">⚠</span>
+            You’re about to copy a phishing address. Double check the <strong>full 42-character address</strong> of the
+            recipient account!
+        </div>
+        <div class="warning-actions">
+            <button class="return-btn" onclick="handleReturn()">Return to Check</button>
+            <button class="confirm-btn3" onclick="handleConfirm()">Yes, I've checked</button>
+        </div>
+    </div>
+</div>
+
+<div id="copyWarningModal2" class="copy-warning-modal2">
+    <div class="warning-box">
+        <div class="warning-text">
+            <span class="warning-icon">⚠</span>
+            The recipient address is detected a phishing address. Double check the <strong>full 42-character
+            address</strong> of the
+            recipient account!
+        </div>
+        <div class="warning-actions">
+            <button class="return-btn" onclick="handleReturn2()">Return to Check</button>
+            <button class="confirm-btn3" onclick="handleConfirm2()">Yes, I've checked</button>
+        </div>
+    </div>
+</div>
+
+<div id="addcheckModal" class="address-warning-modal">
+    <div class="warning-box">
+        <div class="warning-text">
+            <span class="warning-icon">⚠</span>
+            The address you entered: <strong id="wrong_address">0x...</strong><br>Huge difference from task.<br> Please
+            carefully review the task content!
+        </div>
+        <div class="warning-actions">
+            <button class="return-btn4" onclick="addcheckReturn()">Return</button>
+        </div>
+    </div>
+</div>
+
+
+<div id="PageIn" class="Page-Into">
+    <div class="task-box">
+        <div class="task-text" id="tasktextin">
+            Dear test participant, welcome to a test on the historical transaction record function of
+            wallet application!<br><br>
+            In this test, you have previously conducted transactions with multiple addresses. You are now required to
+            use the wallet interface on the right to repeat some of them for the functionality test,
+            using the <strong>Send</strong> and <strong>Transaction History</strong> functions.<br><br>
+            Please complete the transfers tasks using the wallet on the right. We will record the accuracy of your
+            transfers.<br><br>
+            <strong>You can copy the address by clicking it in the History, or enter it manually.</strong><br><br>
+            Please view detailed wallet instructions by clicking <strong>Task Instruction</strong> in the left
+            sidebar. <strong>You can check the specific transfer tasks at any time by clicking Task List</strong>.<br>
+        </div>
+        <div class="task-actions">
+            <button class="task-start" onclick="start()">Start</button>
+        </div>
+    </div>
+</div>
+
+<div id="task_Detail" class="Page-Into2">
+    <div class="task-box2">
+        <div class="task-text2" id="taskdetail">
+            Task 1：<br><br> You have previously transacted with account <strong id="text_address"
+                                                                                onmouseover="startHover()"
+                                                                                onmouseout="endHover()"
+                                                                                title="0xa92afFA8e08c87dB8B46123c893737D4492152da">0xa92af...2152da</strong><br>
+            (hover over the address can view its full 42-character address), <br><br>Please send<strong>
+            0.5 USDC</strong> to this address again.<br><br>
+            (This can be viewed again by clicking task in the "Task List".)
+        </div>
+        <div class="task-actions2">
+            <button class="task-start2" onclick="start_task()">Start</button>
+        </div>
+    </div>
+</div>
+
+
+<script src="trans_detail.js"></script>
+
+<script type="module" src="/src/main.ts"></script>
+</body>
+</html>
